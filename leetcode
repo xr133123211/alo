@@ -1,3 +1,48 @@
-1、二叉树前序中序 求二叉树结构
-   hash节点数值、顺序、递归求解、
-   
+1、two_sum
+   hashmap
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map =new HashMap<Integer,Integer>();
+        Integer j;
+        for(int i=0;i<nums.length;i++){
+            j = map.get(target-nums[i]);
+            if(j!=null)
+            {
+                int[] answers = {j,i};
+                return answers;
+                
+            }
+            map.put(nums[i],i);
+        }
+        return null;
+       
+       
+    }
+2、add_two_nums
+	linkedList
+	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            int val=0;
+		    ListNode head=null,now=null;
+            while(true){        	
+            	if(l1!=null){
+            		val = val+l1.val;
+            		l1=l1.next;
+            	}
+        	    if(l2!=null){
+        		    val = val+l2.val;
+        		    l2=l2.next;
+        	    }   
+        	    if(l1==null&&l2==null&&val==0) break;
+        	    else {
+				    if(head==null){
+					    head=new ListNode(val%10);
+					    now = head;					
+				    }else{
+					    now.next=new ListNode(val%10);
+					    now = now.next;
+				    }
+				    val = val/10;
+        	    }
+            }
+            if(head==null) return new ListNode(0);
+            else return head;
+        }
