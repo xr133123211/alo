@@ -46,3 +46,30 @@
             if(head==null) return new ListNode(0);
             else return head;
         }
+
+3.longest subString
+ public int lengthOfLongestSubstring(String s) {
+        Map<Character,Integer> map = new HashMap<Character,Integer>();
+        Integer exist; Character c; int l=0,r=0,length = 0,nowLength = 0;
+        while(r<s.length()){
+            c  = s.charAt(r);
+            exist = map.get(c);
+            if(exist==null){
+              nowLength++;
+              length = nowLength>length?nowLength:length;
+            } 
+            else{
+                for(int j=l;j<=exist;j++){
+                    map.remove(s.charAt(j));
+                }
+                l = exist+1;
+                nowLength = r-l+1;
+
+            }
+            map.put(c,r);
+            r++;
+
+        }
+        return length;
+        
+    }
